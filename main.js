@@ -54,9 +54,9 @@ function EliminarTareas() {
 
   for (var i = 1; i <= taskTable.rows.length - 1; i++) {
     if (taskTable.rows[i].cells[3].children[0].checked == true) {
-      console.log("Eliminando fila: " + i);
       taskTable.deleteRow(i);
       exists = true;
+      i = 0; // vuelvo el iterador a 0 para no saltar ninguna tarea
     }
   }
   // Si existe una tarea marcada se reorganizan los numero de la celda 0, si no, muestro una advertencia.
