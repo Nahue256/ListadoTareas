@@ -12,7 +12,7 @@ function AgregarTarea(event) {
 
   // Si la tarea es valida se agrega a la lista de tareas, sino, la tarea no se agrega y se muestra una advertencia
   if (!NoEsValido(taskText)) {
-    // Recorro las filas de la tabla, si la proxima esta vacia, inserto las celdas con sus elementos y vacio el input de la tarea.
+    // Recorro las filas de la tabla, si la proxima esta vacia, inserto las celdas con sus elementos, guardo las tareas y vacio el input de la tarea.
     for (var i = 0; i <= taskTable.rows.length; i++) {
       if (taskTable.rows[i + 1] == null) {
         var row = taskTable.insertRow(i + 1);
@@ -46,7 +46,7 @@ function AgregarTarea(event) {
 }
 
 function EliminarTareas() {
-  console.log("Eliminando Tareas....");
+  console.log("Tareas eliminandose");
   var taskTable = document.getElementById("taskTable");
   var exists = false;
 
@@ -54,35 +54,32 @@ function EliminarTareas() {
 
   for (var i = 1; i <= taskTable.rows.length - 1; i++) {
     if (taskTable.rows[i].cells[3].children[0].checked == true) {
-      console.log("eliminando fila: " + i);
+      console.log("Eliminando fila: " + i);
       taskTable.deleteRow(i);
       exists = true;
     }
   }
   // Si existe una tarea marcada se reorganizan los numero de la celda 0, si no, muestro una advertencia.
-  exists ? ReasignarNumero() : window.alert("No hay tareas marcadas");
+  exists ? ReasignarNumero() : window.alert("No hay tareas marcadas!");
   ActualizarTareas();
 }
 
 function NoEsValido(taskText) {
-  // Valido la tarea ingresada y le agrego una clase
+  // Valido la tarea ingresada y le agrego una clase al input
   if (
     taskText.value == null ||
     taskText.value == "" ||
     taskText.value.length > 50
   ) {
-    console.log("validacion invalida");
     document.getElementById("taskText").className = "form-control is-invalid";
     return true;
   } else {
-    console.log("validacion valida");
     document.getElementById("taskText").className = "form-control is-valid";
     return false;
   }
 }
 
 function VaciarInputs() {
-  console.log("vaciando inputs..");
   document.getElementById("taskText").value = "";
   document.getElementById("taskTime").value = "";
 }
@@ -98,31 +95,27 @@ function ReasignarNumero() {
 // Actualizo las tareas guardadas al guardar o eliminar tareas
 
 function ActualizarTareas() {
-  var data; //= JSON.parse(localStorage.getItem("savedData"));
+  var data;
 
   var taskTable = document.getElementById("taskTable");
-  console.log(data);
 
   for (var i = 1; i <= taskTable.rows.length - 1; i++) {
-    console.log("i: " + i);
     var obj = {
       taskText: taskTable.rows[i].cells[1].innerHTML,
       taskTime: taskTable.rows[i].cells[2].innerHTML,
     };
 
     if (data == null) {
-      console.log("Data NULL");
       data = [obj];
     } else {
       data.push(obj);
     }
   }
 
-  // Si hay tareas, las actualizo en el localStorage sino borro el localStorage
+  // Si no hay tareas para guardar borro el localStorage, si las hay actualizo en el localStorage
   if (data == null) {
     localStorage.removeItem("savedData");
   } else {
-    console.log(data);
     localStorage.removeItem("savedData");
     localStorage.setItem("savedData", JSON.stringify(data));
   }

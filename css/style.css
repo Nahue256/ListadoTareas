@@ -6,49 +6,12 @@ header {
   background-color: #0b4a19;
 }
 
-header a h1 {
-  position: relative;
-  display: inline-block;
-  font-size: 2em;
-  font-weight: 800;
-  color: white;
-  overflow: hidden;
-  background: linear-gradient(to right, red, red 50%, white 50%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 100%;
-  background-position: 100%;
-  transition: background-position 275ms ease;
-  text-decoration: none;
-}
-header a h1:hover {
-  background-position: 0 100%;
+form{
+  margin-bottom: 3vw;
+  margin-top: 3vw;
 }
 
-header .form-inline.my-2.my-lg-0 {
-  position: center;
-}
-
-.nav.bg-dark li a:hover {
-  color: red;
-
-  transition: 0.7s;
-}
-
-header .collapse.navbar-collapse.justify-content-end .nav-link.border:hover {
-  color: red;
-  transition: 0.7s;
-}
-
-header a {
-  color: white;
-}
-
-form {
-  margin: 3vw;
-}
-
-table {
-  margin: 3vw;
+table{
+  margin-bottom: 4vw;
+  margin-top: 4vw;
 }
