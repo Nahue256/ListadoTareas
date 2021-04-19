@@ -1,0 +1,17 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-color: #0b4a19;
+}
+
+form{
+  margin-bottom: 3vw;
+  margin-top: 3vw;
+}
+
+table{
+  margin-bottom: 4vw;
+  margin-top: 4vw;
+}
